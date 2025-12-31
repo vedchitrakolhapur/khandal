@@ -994,6 +994,101 @@ body {
     
     <main class="container">
         
+            
+            <style>
+                 
+                .slideshow-container { position: relative; max-width: 100%; margin: auto; overflow: hidden; border-radius: 10px; }
+                
+                 
+                .slider-img {
+                    width: 100%;
+                    height: auto;
+                    aspect-ratio: 16/9;
+                    object-fit: cover;
+                    vertical-align: middle;
+                }
+                
+                 
+                @media(min-width: 768px) {
+                    .slider-img { height: 450px; aspect-ratio: auto; }
+                }
+
+                 
+                .prev, .next {
+                    cursor: pointer; position: absolute; top: 50%; width: auto; padding: 16px; margin-top: -22px;
+                    color: white; font-weight: bold; font-size: 18px; transition: 0.6s ease; border-radius: 0 3px 3px 0;
+                    user-select: none; background-color: rgba(0,0,0,0.3); text-decoration: none;
+                }
+                .next { right: 0; border-radius: 3px 0 0 3px; }
+                .prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
+
+                 
+                .dots-container { text-align: center; margin-top: -30px; position: relative; z-index: 10; padding-bottom: 10px; }
+                .dot {
+                    cursor: pointer; height: 10px; width: 10px; margin: 0 2px; background-color: rgba(255,255,255,0.5);
+                    border-radius: 50%; display: inline-block; transition: background-color 0.6s ease;
+                    border: 1px solid #fff;
+                }
+                
+                 
+                 
+                 
+                .dot.active, .dot:hover { background-color: white; transform: scale(1.2); }
+                
+                 
+                .fade { animation-name: fade; animation-duration: 1.5s; }
+                @keyframes fade { from {opacity: .4} to {opacity: 1} }
+            </style>
+            <div class="slideshow-container">
+                
+                <div class="mySlides fade" style="display: block;">
+                    <img src="https://khandal.gadgp.in/assets/gp2497529.webp" class="slider-img">
+                </div>
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                <div class="dots-container">
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                </div>
+            </div>
+            
+            <script>
+                var slideIndex = 1;
+                var slideTimer;
+
+                
+                showSlides(slideIndex);
+
+                function plusSlides(n) {
+                    clearTimeout(slideTimer);
+                    showSlides(slideIndex += n);
+                }
+
+                function currentSlide(n) {
+                    clearTimeout(slideTimer);
+                    showSlides(slideIndex = n);
+                }
+
+                function showSlides(n) {
+                    var i;
+                    var slides = document.getElementsByClassName("mySlides");
+                    var dots = document.getElementsByClassName("dot");
+                    
+                    if (n > slides.length) {slideIndex = 1}
+                    if (n < 1) {slideIndex = slides.length}
+                    
+                    for (i = 0; i < slides.length; i++) {
+                        slides[i].style.display = "none";
+                    }
+                    for (i = 0; i < dots.length; i++) {
+                        dots[i].className = dots[i].className.replace(" active", "");
+                    }
+                    
+                    if(slides[slideIndex-1]) slides[slideIndex-1].style.display = "block";
+                    if(dots[slideIndex-1]) dots[slideIndex-1].className += " active";
+
+                    slideTimer = setTimeout(function() { plusSlides(1) }, 4000); 
+                }
+            </script>
         <div class="about-section text-center">
             <h2 class="section-title">गावाविषयी थोडक्यात</h2>
             <p class="content-text" style="text-align: center;">आमच्या गावात तुमचे स्वागत आहे. हे गाव निसर्गसंपन्न आणि सांस्कृतिक वारसा जपलेले आहे... खंदाळ हे गडहिंग्लज तालुक्यातील एक आदर्श गाव आहे. निसर्गाच्या कुशीत वसलेले हे गाव आपल्या कृषी संस्कृती आणि सामाजिक एकात्मतेसाठी ओळखले जाते. आधुनिक सोयीसुविधा आणि पारंपारिक जीवनशैली यांचा सुंदर मिलाफ येथे पाहायला मिळतो.</p>
